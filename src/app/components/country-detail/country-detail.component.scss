@@ -1,0 +1,76 @@
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.back-button {
+  margin: 1rem 0;
+  mat-icon {
+    margin-right: 0.5rem;
+  }
+}
+
+.country-card {
+  margin-top: 2rem;
+}
+
+.country-header {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  padding: 1rem;
+
+  .country-flag {
+    width: 300px;
+    height: auto;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+
+  h1 {
+    margin: 0;
+    font-size: 2rem;
+  }
+}
+
+.country-details {
+  padding: 2rem;
+}
+
+.details-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 2rem;
+}
+
+.detail-item {
+  h3 {
+    margin: 0 0 0.5rem;
+    font-size: 1rem;
+    color: rgba(0, 0, 0, 0.7);
+  }
+
+  p {
+    margin: 0;
+    font-size: 1.1rem;
+  }
+}
+
+.error-message {
+  text-align: center;
+  padding: 1rem;
+  margin: 1rem 0;
+}
+
+@media (max-width: 768px) {
+  .country-header {
+    flex-direction: column;
+    text-align: center;
+
+    .country-flag {
+      width: 100%;
+      max-width: 300px;
+    }
+  }
+}

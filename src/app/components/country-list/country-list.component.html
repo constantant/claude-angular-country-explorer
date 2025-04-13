@@ -1,0 +1,48 @@
+<div class="container">
+  <header class="app-header mat-elevation-z2">
+    <h1>Country Explorer</h1>
+  </header>
+  <div class="filters mat-elevation-z1">
+    <mat-form-field appearance="outline">
+      <mat-label>Search countries</mat-label>
+      <input matInput [formControl]="searchControl" placeholder="Enter country name">
+      <mat-icon matSuffix>search</mat-icon>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Filter by region</mat-label>
+      <mat-select [formControl]="regionControl">
+        <mat-option value="">All regions</mat-option>
+        <mat-option *ngFor="let region of regions" [value]="region">
+          {{region}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+  <div class="content">
+    <mat-progress-bar *ngIf="isLoading" mode="indeterminate"></mat-progress-bar>
+
+    <mat-error *ngIf="error" class="error-message">
+      {{ error }}
+    </mat-error>
+
+    <div class="countries-grid" *ngIf="filteredCountries$ | async as countries">
+      <mat-card *ngFor="let country of countries" class="country-card" (click)="viewCountryDetails(country)">
+        <img mat-card-image [src]="country.flags.png" [alt]="country.name.common + ' flag'">
+        <mat-card-content>
+          <h2>{{country.name.common}}</h2>
+          <p><strong>Population:</strong> {{country.population | number}}</p>
+          <p><strong>Region:</strong> {{country.region}}</p>
+          <p><strong>Capital:</strong> {{country.capital | capitalFormat}}</p>
+        </mat-card-content>
+      </mat-card>
+
+      <div *ngIf="countries.length === 0" class="no-results">
+        <mat-icon>search_off</mat-icon>
+        <p>No countries found matching your criteria</p>
+      </div>
+    </div>
+  </div>
+</div>
+

@@ -1,0 +1,64 @@
+<div class="container">
+  <mat-progress-bar *ngIf="isLoading" mode="indeterminate"></mat-progress-bar>
+
+  <button mat-button (click)="goBack()" class="back-button">
+    <mat-icon>arrow_back</mat-icon>
+    Back to List
+  </button>
+
+  <mat-error *ngIf="error" class="error-message">
+    {{ error }}
+  </mat-error>
+
+  <mat-card *ngIf="country && !error" class="country-card">
+    <div class="country-header">
+      <img [src]="country.flags.svg" [alt]="country.name.common + ' flag'" class="country-flag">
+      <h1>{{country.name.common}}</h1>
+    </div>
+
+    <mat-card-content class="country-details">
+      <div class="details-grid">
+        <div class="detail-item">
+          <h3>Official Name</h3>
+          <p>{{country.name.official}}</p>
+        </div>
+
+        <div class="detail-item">
+          <h3>Population</h3>
+          <p>{{country.population | number}}</p>
+        </div>
+
+        <div class="detail-item">
+          <h3>Region</h3>
+          <p>{{country.region}}</p>
+        </div>
+
+        <div class="detail-item">
+          <h3>Sub Region</h3>
+          <p>{{country.subregion || 'N/A'}}</p>
+        </div>
+
+        <div class="detail-item">
+          <h3>Capital</h3>
+          <p>{{country.capital.join(', ')}}</p>
+        </div>
+
+        <div class="detail-item">
+          <h3>Languages</h3>
+          <p>{{getLanguages() || 'N/A'}}</p>
+        </div>
+
+        <div class="detail-item">
+          <h3>Currencies</h3>
+          <p>{{getCurrencies() || 'N/A'}}</p>
+        </div>
+
+        <div class="detail-item" *ngIf="country.borders">
+          <h3>Border Countries</h3>
+          <p>{{country.borders.join(', ')}}</p>
+        </div>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>
+
